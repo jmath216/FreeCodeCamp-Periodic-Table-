@@ -12,3 +12,14 @@ get_element_info() {
         WHERE elements.atomic_number = '${input}' 
         OR elements.symbol = '${input}' 
         OR elements.name = '${input}'")
+
+            # Check if result is not empty
+    if [[ -z "$result" ]]; then
+        echo "I could not find that element in the database."
+    else
+        # Format and display the result
+        echo "$result" | while IFS='|' read -r atomic_number symbol name type atomic_mass melting_point boiling_point; do
+            echo "The element with atomic number $atomic_number is $name ($symbol). It's a $type, with a mass of $atomic_mass amu. $name has a melting point of $melting_point celsius and a boiling point of $boiling_point celsius."
+        done
+    fi
+}
