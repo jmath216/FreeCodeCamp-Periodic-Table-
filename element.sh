@@ -23,3 +23,12 @@ get_element_info() {
         done
     fi
 }
+
+# Main script
+if [[ -z "$1" ]]; then
+    echo "You need to provide an argument (atomic number, symbol, or name)."
+    exit 1
+fi
+
+# Call the function with the input argument
+get_element_info "$1"
